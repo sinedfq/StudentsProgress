@@ -1,0 +1,208 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:StudentsMonitoringProgress.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="500" d:DesignHeight="250"
+        x:Class="StudentsMonitoringProgress.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="StudentsMonitoringProgress">
+
+    <Design.DataContext>
+      <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+   
+    <Window.DataContext>
+        <vm:MainWindowViewModel/>
+    </Window.DataContext>
+    
+    <Window.Styles>
+        <Style Selector="TextBlock.h1">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Margin" Value="0,10,0,0"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style Selector="TextBlock.h2">
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style Selector="TextBlock.h3">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style Selector="TextBox.h2">
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Margin" Value="15, 5, 5, 5"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        </Style>
+        <Style Selector="ComboBox.h2">
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        </Style>
+        <Style Selector="Button.h2">
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </Window.Styles>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/> 
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+  
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock Classes="h1" Text="оценки за контрольный срок"/>
+            <Grid Grid.Row="1" Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="1.4*"/>
+                </Grid.ColumnDefinitions>
+                
+                <TextBlock Classes="h2" Text="ФИО" Grid.Column="0"/>
+                <TextBlock Classes="h2" Text="ВП" Grid.Row="0" Grid.Column="1"/>
+                <TextBlock Classes="h2" Text="Мат" Grid.Row="0" Grid.Column="2"/>
+                <TextBlock Classes="h2" Text="ЭЭС" Grid.Row="0" Grid.Column="3"/>
+                <TextBlock Classes="h2" Text="Выч.мат" Grid.Row="0" Grid.Column="4"/>
+                <TextBlock Classes="h2" Text="СРЕДНИЙ&#x0a;БАЛЛ" Grid.Row="0" Grid.Column="8"/>
+                <Border Grid.Row="0" Grid.Column="0"  BorderBrush="Black"  BorderThickness="1" />
+                <Border Grid.Row="0" Grid.Column="1"  BorderBrush="Black"  BorderThickness="1" />
+                <Border Grid.Row="0" Grid.Column="2"  BorderBrush="Black"  BorderThickness="1" />
+                <Border Grid.Row="0" Grid.Column="3"  BorderBrush="Black"  BorderThickness="1" />
+                <Border Grid.Row="0" Grid.Column="4"  BorderBrush="Black"  BorderThickness="1" />
+                <Border Grid.Row="0" Grid.Column="8"  BorderBrush="Black"  BorderThickness="1" />
+            </Grid>
+        </Grid>
+        
+		<ScrollViewer Grid.Row="1">
+			<Grid MaxHeight="300">
+        <ListBox Grid.Row="1" Items="{Binding Students}" SelectedIndex="{Binding Index}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="1.4*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Classes="h2" Text="{Binding Name}" Grid.Column="0"/>
+                        <TextBlock Classes="h2" Text="{Binding VisualProg}" Grid.Row="0" Grid.Column="1"/>
+                        <TextBlock Classes="h2" Text="{Binding MathAnalysis}" Grid.Row="0" Grid.Column="2"/>
+                        <TextBlock Classes="h2" Text="{Binding Electrotechnic}" Grid.Row="0" Grid.Column="3"/>
+                        <TextBlock Classes="h2" Text="{Binding ComputerMath}" Grid.Row="0" Grid.Column="4"/>
+                        <TextBlock Classes="h2" Text="{Binding AverageMark}" Grid.Row="0" Grid.Column="8"/>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+			</Grid>
+		</ScrollViewer>
+				
+        <Grid Grid.Row="2" Margin="10, 20, 10, 20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1.4*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Classes="h2" Text="СРЕДНИЙ БАЛЛ" Grid.Column="0"/>
+            <TextBlock Classes="h2" Text="{Binding ScVisualProg}" Grid.Column="1"/>
+            <TextBlock Classes="h2" Text="{Binding ScMathAnalysis}" Grid.Column="2"/>
+            <TextBlock Classes="h2" Text="{Binding ScElectrotechnic}" Grid.Column="3"/>
+            <TextBlock Classes="h2" Text="{Binding ScComputerMath}" Grid.Column="4"/>
+            <TextBlock Classes="h2" Text="{Binding ScAverageMark}" Grid.Column="8"/>
+            <Border Grid.Row="0" Grid.Column="0"  BorderBrush="Black"  BorderThickness="1" />
+            <Border Grid.Row="0" Grid.Column="1"  BorderBrush="Black"  BorderThickness="1" />
+            <Border Grid.Row="0" Grid.Column="2"  BorderBrush="Black"  BorderThickness="1" />
+            <Border Grid.Row="0" Grid.Column="3"  BorderBrush="Black"  BorderThickness="1" />
+            <Border Grid.Row="0" Grid.Column="4"  BorderBrush="Black"  BorderThickness="1" />
+            <Border Grid.Row="0" Grid.Column="8"  BorderBrush="Black"  BorderThickness="1" />
+        </Grid>
+        
+     
+        
+        <Grid Grid.Row="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1.4*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBox x:Name="NewStudentTextBox" Watermark="ФИО" TextWrapping="Wrap" Text="{Binding NewStudentName, Mode=TwoWay}" Grid.Column="0" Classes="h2"/>
+            <ComboBox Items="{Binding GradeChoices}" SelectedIndex="{Binding SelectedVisualProgGrade}" Grid.Row="0"
+                      Grid.Column="1" Classes="h2"/>
+            <ComboBox Items="{Binding GradeChoices}" SelectedIndex="{Binding SelectedMathAnalysisGrade}" Grid.Row="0"
+                      Grid.Column="2" Classes="h2"/>
+            <ComboBox Items="{Binding GradeChoices}" SelectedIndex="{Binding SelectedElectrotechnicGrade}" Grid.Row="0"
+                      Grid.Column="3" Classes="h2"/>
+            <ComboBox Items="{Binding GradeChoices}" SelectedIndex="{Binding SelectedComputerMathGrade}" Grid.Row="0"
+                      Grid.Column="4" Classes="h2"/>
+    
+        </Grid>
+        
+        <Grid Grid.Row="4">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Classes="h2" Text="    добавить/удалить студента    " Grid.Column="0"/>
+            <Button Content="Добавить" Command="{Binding AddStudentCommand}" Classes="h2" Grid.Row="0" Grid.Column="1"/>
+            <Button Content="Удалить" Command="{Binding DeleteStudentCommand}" Classes="h2" Grid.Row="0" Grid.Column="2"/>
+        </Grid>
+        
+    </Grid>
+
+</Window>
